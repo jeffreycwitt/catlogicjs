@@ -1,6 +1,6 @@
 exports.Term = require('./lib/Term.js');
-exports.Term = require('./lib/Distribution.js');
-exports.Term = require('./lib/Proposition.js');
-exports.Term = require('./lib/Quantity.js');
-exports.Term = require('./lib/Quality.js');
-exports.Term = require('./lib/PropositionType.js');
+exports.Distribution = require('./lib/Distribution.js');
+exports.Proposition = require('./lib/Proposition.js');
+exports.Quantity = require('./lib/Quantity.js');
+exports.Quality = require('./lib/Quality.js');
+exports.PropositionType = require('./lib/PropositionType.js');
