@@ -1,0 +1,23 @@
+{
+  "name": "catlogicjs",
+  "version": "1.0.0",
+  "description": "A javascript library for categorical logic",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "type": "module",
+  "author": "Jeffrey C. Witt",
+  "license": "ISC",
+  "dependencies": {},
+  "bin": {
+    "catlogicjs": "run.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
