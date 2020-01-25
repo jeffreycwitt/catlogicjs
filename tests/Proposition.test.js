@@ -47,6 +47,11 @@ it('Proposition creates contradictory', () => {
   const result = gp.contradictory()
   expect(result.label).toBe("Some dogs are not animals")
 });
+it('Proposition creates contradictory with false truth value', () => {
+  const p = new Proposition("universal", "dogs", "affirmative", "animals", "false")
+  const result = gp.contradictory()
+  expect(result.label).toBe("Some dogs are not animals")
+});
 it('Proposition returns proposition type', () => {
   const result = gp.type()
   expect(result.label).toBe("A")
