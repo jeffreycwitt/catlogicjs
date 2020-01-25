@@ -3,79 +3,85 @@ const Term = require('../lib/Term');
 const Quantity = require('../lib/Quantity');
 const Quality = require('../lib/Quality');
 
-const gp = new Proposition(new Quantity("universal"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "true")
+const at = new Proposition(new Quantity("universal"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "true")
+const af = new Proposition(new Quantity("universal"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "false")
+const et = new Proposition(new Quantity("universal"), new Term("dogs"), new Quality("negative"), new Term("animals"), "true")
+const ef = new Proposition(new Quantity("universal"), new Term("dogs"), new Quality("negative"), new Term("animals"), "false")
+const itrue = new Proposition(new Quantity("particular"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "true")
+const ifalse = new Proposition(new Quantity("particular"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "false")
+const ot = new Proposition(new Quantity("particular"), new Term("dogs"), new Quality("negative"), new Term("animals"), "true")
+const of = new Proposition(new Quantity("particular"), new Term("dogs"), new Quality("negative"), new Term("animals"), "false")
 
 it('Proposition has quantity', () => {
-  const result = gp.quantity
+  const result = at.quantity
   expect(result.label).toBe("universal")
 });
 it('Proposition has subject', () => {
-  const result = gp.subject
+  const result = at.subject
   expect(result.label).toBe("dogs")
 });
 it('Proposition has quality', () => {
-  const result = gp.quality
+  const result = at.quality
   expect(result.label).toBe("affirmative")
 });
 it('Proposition has predicate', () => {
-  const result = gp.predicate
+  const result = at.predicate
   expect(result.label).toBe("animals")
 });
 it('Proposition has UNstated "true" truthvalue', () => {
-  const result = gp.truthvalue
-  expect(result.label).toBe("true")
-});
-it('Proposition has stated "true" truthvalue', () => {
-  const p = new Proposition("universal", "dogs", "affirmative", "animals", "true")
+  const p = new Proposition("universal", "dogs", "affirmative", "animals")
   const result = p.truthvalue
   expect(result.label).toBe("true")
-});
-it('Proposition has a stated "false" truth value', () => {
-  const p = new Proposition("universal", "dogs", "affirmative", "animals", "false")
-  const result = p.truthvalue
-  expect(result.label).toBe("false")
 });
 it('Proposition has label', () => {
-  const result = gp.label
+  const result = at.label
   expect(result).toBe("All dogs are animals")
 });
 it('Proposition created objects rather than strings', () => {
-  const result = gp.label
+  const result = at.label
   expect(result).toBe("All dogs are animals")
 });
 it('Proposition creates contradictory', () => {
-  const result = gp.contradictory()
+  const result = at.contradictory()
   expect(result.label).toBe("Some dogs are not animals")
 });
 it('Proposition creates contradictory with false truth value', () => {
-  const p = new Proposition("universal", "dogs", "affirmative", "animals", "false")
-  const result = gp.contradictory()
-  expect(result.label).toBe("Some dogs are not animals")
+  const result = af.contradictory()
+  expect(result.truthvalue.label).toBe("true")
 });
 it('Proposition returns proposition type', () => {
-  const result = gp.type()
+  const result = at.type()
   expect(result.label).toBe("A")
 });
 it('Proposition creates and returns subaltern with correct label', () => {
-  const result = gp.subaltern()
+  const result = at.subaltern()
   expect(result.label).toBe("Some dogs are animals")
 });
 it('Proposition creates and returns subaltern with correct truth value for "true" A type universal affirmative ', () => {
-  const result = gp.subaltern()
+  const result = at.subaltern()
   expect(result.truthvalue.label).toBe("true")
 });
 it('Proposition creates and returns subaltern with correct truth value for "false" A type universal affirmative ', () => {
-  const p = new Proposition(new Quantity("universal"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "false")
-  const result = p.subaltern()
+  const result = af.subaltern()
   expect(result.truthvalue.label).toBe("unknown")
 });
 it('Proposition creates and returns subaltern with correct truth value for "false" I type particular affirmative ', () => {
-  const p = new Proposition(new Quantity("particular"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "false")
-  const result = p.subaltern()
+  const result = ifalse.subaltern()
   expect(result.truthvalue.label).toBe("false")
 });
 it('Proposition creates and returns subaltern with correct truth value for "true" I type particular affirmative ', () => {
-  const p = new Proposition(new Quantity("particular"), new Term("dogs"), new Quality("affirmative"), new Term("animals"), "true")
-  const result = p.subaltern()
+  const result = itrue.subaltern()
   expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition creates and returns converse for A type proposition with correct truth value ', () => {
+  const result = at.converse()
+  expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition creates and returns converse for E type proposition with correct truth value ', () => {
+  const result = ef.converse()
+  expect(result.truthvalue.label).toBe("false")
+});
+it('Proposition creates and returns obverse ', () => {
+  const result = at.obverse()
+  expect(result.label).toBe("No dogs are not-animals")
 });
