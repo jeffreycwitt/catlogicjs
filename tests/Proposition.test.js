@@ -85,3 +85,47 @@ it('Proposition creates and returns obverse ', () => {
   const result = at.obverse()
   expect(result.label).toBe("No dogs are not-animals")
 });
+it('Proposition creates and returns contraposition for true A ', () => {
+  const result = at.contrapose()
+  expect(result.label).toBe("All not-animals are not-dogs")
+});
+it('Proposition creates and returns contraposition for true A with correct truth value', () => {
+  const result = at.contrapose()
+  expect(result.truthvalue.label).toBe("true")
+});
+it('Proposition creates and returns contraposition for fale E with correct truth value', () => {
+  const result = ef.contrapose()
+  expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition returns (sub)contrary for true A', () => {
+  const result = at.contrary()
+  expect(result.truthvalue.label).toBe("false")
+});
+it('Proposition returns (sub)contrary for false A', () => {
+  const result = af.contrary()
+  expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition returns (sub)contrary for true E', () => {
+  const result = et.contrary()
+  expect(result.truthvalue.label).toBe("false")
+});
+it('Proposition returns (sub)contrary for false E', () => {
+  const result = ef.contrary()
+  expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition returns (sub)contrary for true I', () => {
+  const result = itrue.contrary()
+  expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition returns (sub)contrary for false I', () => {
+  const result = ifalse.contrary()
+  expect(result.truthvalue.label).toBe("true")
+});
+it('Proposition returns (sub)contrary for true O', () => {
+  const result = ot.contrary()
+  expect(result.truthvalue.label).toBe("unknown")
+});
+it('Proposition returns (sub)contrary for false O', () => {
+  const result = of.contrary()
+  expect(result.truthvalue.label).toBe("true")
+});

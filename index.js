@@ -5,3 +5,4 @@ exports.Quantity = require('./lib/Quantity.js');
 exports.Quality = require('./lib/Quality.js');
 exports.PropositionType = require('./lib/PropositionType.js');
 exports.Truthvalue = require('./lib/Truthvalue.js');
+exports.Syllogism = require('./lib/Syllogism.js');
