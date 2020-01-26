@@ -56,7 +56,7 @@ it('Syllogism tests conclusionTermMatchTest for where no middle exists', () => {
   expect(result.validity).toBe(false)
 });
 it('Syllogism returns middle term', () => {
-  const result = aaa1.middle()
+  const result = aaa1.middleTerm()
   expect(result.label).toBe("dogs")
 });
 it('Syllogism returns undefined for middle term when syllogism fails three term test', () => {
@@ -64,6 +64,42 @@ it('Syllogism returns undefined for middle term when syllogism fails three term 
   const mi = new Proposition("universal", "cute things", "affirmative", "pandas", "true")
   const co = new Proposition("universal", "cute things", "affirmative", "animals", "true")
   const invalidaaa1 = new Syllogism(ma, mi, co)
-  const result = invalidaaa1.middle()
+  const result = invalidaaa1.middleTerm()
   expect(result).toBe(undefined)
+});
+it('Undistributed Middle Test for valid AAA1', () => {
+  const result = aaa1.undistributedMiddleTest()
+  expect(result.validity).toBe(true)
+});
+it('Syllogism tests undistributed for INVALID AAA2', () => {
+  const ma = new Proposition("universal", "dogs", "affirmative", "animals", "true")
+  const mi = new Proposition("universal", "cute things", "affirmative", "animals", "true")
+  const co = new Proposition("universal", "cute things", "affirmative", "dogs", "true")
+  const invalidaaa2 = new Syllogism(ma, mi, co)
+  const result = invalidaaa2.undistributedMiddleTest()
+  expect(result.validity).toBe(false)
+});
+it('Illicit Process Major for valid AAA1', () => {
+  const result = aaa1.undistributedMiddleTest()
+  expect(result.validity).toBe(true)
+});
+it('Illicit Process Minor for valid AAA1', () => {
+  const result = aaa1.undistributedMiddleTest()
+  expect(result.validity).toBe(true)
+});
+it('Illicit Process Minor for INVALID AAA4', () => {
+  const ma = new Proposition("universal", "dogs", "affirmative", "animals", "true")
+  const mi = new Proposition("universal", "animals", "affirmative", "cute things", "true")
+  const co = new Proposition("universal", "cute things", "affirmative", "dogs", "true")
+  const invalidaaa4 = new Syllogism(ma, mi, co)
+  const result = invalidaaa4.illicitProcessMinorTest()
+  expect(result.validity).toBe(false)
+});
+it('Illicit Process Major for INVALID AAE3', () => {
+  const ma = new Proposition("universal", "animals", "affirmative", "dogs", "true")
+  const mi = new Proposition("universal", "animals", "affirmative", "cute things", "true")
+  const co = new Proposition("universal", "cute things", "negative", "dogs", "true")
+  const invalidaae3 = new Syllogism(ma, mi, co)
+  const result = invalidaae3.illicitProcessMajorTest()
+  expect(result.validity).toBe(false)
 });
