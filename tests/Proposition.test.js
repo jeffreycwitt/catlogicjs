@@ -129,3 +129,11 @@ it('Proposition returns (sub)contrary for false O', () => {
   const result = of.contrary()
   expect(result.truthvalue.label).toBe("true")
 });
+it('Proposition checks isSameAs', () => {
+  const result = ot.isSameAs(at)
+  expect(result).toBe(false)
+});
+it('Proposition checks isSameAs', () => {
+  const result = at.isSameAs(at)
+  expect(result).toBe(true)
+});

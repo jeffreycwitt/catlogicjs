@@ -10,3 +10,4 @@ exports.Truthvalue = require('./lib/Truthvalue.js');
 exports.Syllogism = require('./lib/Syllogism.js');
 //but if flipped, then premise pair will case error when it calls Syllogism
 exports.PremisePair = require('./lib/PremisePair.js');
+exports.PremiseCollection = require('./lib/PremiseCollection.js');

@@ -7,7 +7,12 @@ const pp = new PremisePair(major, minor)
 
 const majorUnmatch = new Proposition("universal", "dogs", "affirmative", "animals", "true")
 const minorUnmatch = new Proposition("universal", "sharks", "affirmative", "black", "true")
+//test when it only has 2 terms
+const minorUnmatch2 = new Proposition("universal", "dogs", "affirmative", "dogs", "true")
+const majorUnmatch2 = new Proposition("universal", "dogs", "affirmative", "dogs", "true")
 const pp2 = new PremisePair(majorUnmatch, minorUnmatch)
+
+const pp3 = new PremisePair(majorUnmatch2, minorUnmatch2)
 
 it('gets major', () => {
   const result = pp.major
@@ -71,7 +76,11 @@ it('gets minor term', () => {
   const result = pp2.minorTerm()
   expect(result).toBe(undefined)
 });
-it('passes three term test', () => {
+it('appropriately fails three term test', () => {
   const result = pp2.isThreeTermTest()
+  expect(result.validity).toBe(false)
+});
+it('appropriately fails three term test', () => {
+  const result = pp3.isThreeTermTest()
   expect(result.validity).toBe(false)
 });
