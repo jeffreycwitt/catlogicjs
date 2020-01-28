@@ -8,6 +8,7 @@ const et = new Proposition(new Quantity("universal"), new Term("Dogs"), new Qual
 const itrue = new Proposition(new Quantity("particular"), new Term("Dogs"), new Quality("affirmative"), new Term("animals"), "true")
 const t = new Term("Dogs")
 const animals = new Term("animals")
+const notAnimals = new Term("NOT-animals")
 
 it('Term has label', () => {
   const result = t.label
@@ -28,4 +29,12 @@ it('Term predicate distribution with affirmative quality', () => {
 it('Term predicate distribution with negative quality', () => {
   const result = animals.distribution(et)
   expect(result.label).toBe("distributed")
+});
+it('Term returns complement from no prefix to NOT- prefix', () => {
+  const result = animals.opposite().label
+  expect(result).toBe("NOT-animals")
+});
+it('Term returns complement from NOT- prefix to no prefix', () => {
+  const result = notAnimals.opposite().label
+  expect(result).toBe("animals")
 });

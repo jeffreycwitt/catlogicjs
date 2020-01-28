@@ -83,11 +83,11 @@ it('Proposition creates and returns converse for E type proposition with correct
 });
 it('Proposition creates and returns obverse ', () => {
   const result = at.obverse()
-  expect(result.label).toBe("No dogs are not-animals")
+  expect(result.label).toBe("No dogs are NOT-animals")
 });
 it('Proposition creates and returns contraposition for true A ', () => {
   const result = at.contrapose()
-  expect(result.label).toBe("All not-animals are not-dogs")
+  expect(result.label).toBe("All NOT-animals are NOT-dogs")
 });
 it('Proposition creates and returns contraposition for true A with correct truth value', () => {
   const result = at.contrapose()
