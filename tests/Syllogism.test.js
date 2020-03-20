@@ -103,3 +103,15 @@ it('Illicit Process Major for INVALID AAE3', () => {
   const result = invalidaae3.illicitProcessMajorTest()
   expect(result.validity).toBe(false)
 });
+it('get figure', () => {
+  const result = aaa1.figure()
+  expect(result.label).toBe("1")
+});
+it('get mood', () => {
+  const result = aaa1.mood()
+  expect(result.label).toBe("AAA")
+});
+it('get form', () => {
+  const result = aaa1.form()
+  expect(result.label).toBe("AAA1")
+});
