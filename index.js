@@ -1,4 +1,6 @@
 exports.Term = require('./lib/Term.js');
+exports.Mood = require('./lib/Mood.js');
+exports.Form = require('./lib/Form.js');
 exports.Distribution = require('./lib/Distribution.js');
 exports.Proposition = require('./lib/Proposition.js');
 exports.Quantity = require('./lib/Quantity.js');
