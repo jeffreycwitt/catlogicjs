@@ -59,6 +59,14 @@ it('Syllogism returns middle term', () => {
   const result = aaa1.middleTerm()
   expect(result.label).toBe("dogs")
 });
+it('Syllogism returns middle term for AAA4', () => {
+  const ma = new Proposition("universal", "dogs", "affirmative", "animals", "true")
+  const mi = new Proposition("universal", "animals", "affirmative", "cute things", "true")
+  const co = new Proposition("universal", "cute things", "affirmative", "dogs", "true")
+  const invalidaaa4 = new Syllogism(ma, mi, co)
+  const result = invalidaaa4.middleTerm()
+  expect(result.label).toBe("animals")
+});
 it('Syllogism returns undefined for middle term when syllogism fails three term test', () => {
   const ma = new Proposition("universal", "dogs", "affirmative", "animals", "true")
   const mi = new Proposition("universal", "cute things", "affirmative", "pandas", "true")
