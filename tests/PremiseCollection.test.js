@@ -23,6 +23,8 @@ const propositionArray = [
     proposition: a
   }
 ]
+const allDogsAreAnimals = new Proposition("universal", "dogs", "affirmative", "animals")
+
 
 it('Should return array of propositions and accurately count', () => {
   const pa = new PremiseCollection(premiseArray)
@@ -39,6 +41,13 @@ it('Should return array of objects', () => {
 it('Should return unique truths', () => {
   const pa = new PremiseCollection(premiseArray3)
   const result = pa.inferredTruthsUnique(propositionArray)
+  expect(Array.isArray(['value'])).toBe(true)
+
+});
+
+it('Should return unique truths', () => {
+  const pa = new PremiseCollection([allDogsAreAnimals])
+  const result = pa.premisePairs(true)
   expect(Array.isArray(['value'])).toBe(true)
 
 });
